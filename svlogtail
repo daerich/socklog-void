@@ -20,7 +20,9 @@ else
 			-*) usage; exit 1;;
 		esac
 		if [ -d /var/log/socklog/$log ]; then
-			old="$old /var/log/socklog/$log/*.[us]"
+			if [ "/var/log/socklog/$log/*.[us]" != "/var/log/socklog/$log/"'*.[us]' ]; then
+				old="$old /var/log/socklog/$log/*.[us]"
+			fi
 			cur="$cur /var/log/socklog/$log/current"
 		else
 			echo "no logs for $log" 1>&2
